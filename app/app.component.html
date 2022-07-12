@@ -1,0 +1,45 @@
+
+<table border="1">
+  <tr>
+    <th>Consultation</th>
+  </tr>
+  <tr>
+    <th>Taper le code et valider: </th>
+    <th><input type="text" size="5" value="1" [(ngModel)]="code"/></th>
+    <th>ou</th>
+    <th>Choisir un auteur:</th>
+    <th><select name="" id=""></select></th>
+  </tr>
+  <tr>
+    <img src="../assets/{{leslivres[code-1].couverture}}"/>
+    <p>Titres: {{ leslivres[code-1].prix }}</p>
+    
+  </tr>
+</table>
+<table border="1">
+<tr>
+  <th colspan="3">Commande</th>
+</tr>
+<tr>
+  <td>Tapez une quantiter et valider: </td>
+  <th><input type="text" size="5" value="1" [(ngModel)]="nbrLivre"></th>
+</tr>
+<tr>
+  <th>Total sans remise: {{ leslivres[code-1].prix * nbrLivre }}</th>
+  <div *ngIf="leslivres[code-1].prix * nbrLivre > 40; else prixSansRemise">
+    <th>Remise: {{ (5 * leslivres[code-1].prix)/100}}</th>
+  </div>
+  <ng-template #prixSansRemise>
+    <th>Pas de remise</th>
+  </ng-template>
+</tr>
+<div *ngIf="leslivres[code-1].prix * nbrLivre > 40; else prixSansRemise2">
+  <th>Total:</th>
+  <th>{{ (leslivres[code-1].prix * nbrLivre) - (5/100* (leslivres[code-1].prix * nbrLivre))}}</th>
+</div>
+<ng-template #prixSansRemise2>
+  <th>Total:</th>
+  <th> {{ (leslivres[code-1].prix * nbrLivre)}}</th>
+  </ng-template>
+</table>
+
